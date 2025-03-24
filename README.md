@@ -1,3 +1,67 @@
+# Passos para roda a Aplicação para teste !
+
+# Primeiro você deve Abrir o docker na sua maquina !
+
+Em seguida você deve abrir o terminal para digita os comandos para inicia aplicação !
+
+# OBS: Para rodar os comando você deve esta na Raiz do Projeto !!
+
+# Primeiro Comando !
+./bin/build.sh
+
+# Segundo Comando !
+docker network create_backend_network
+
+# Terceiro Comando !
+docker_compose up -d
+
+# Quarto Comando !
+docker-compose exec app sh
+
+# Quinto Comando !
+composer install
+
+# Sexto Comando !
+php artisan key:generate
+
+# Setimo Comando !
+php artisan migrate
+
+# Oitavo Comando !
+php artisan db:seed
+
+# Com isso você ja deve está rodando a aplicação para teste !!
+
+Obrigado !
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Desafio técnico - Proesc
 
 
