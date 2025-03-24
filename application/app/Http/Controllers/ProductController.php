@@ -48,37 +48,22 @@ class ProductController extends Controller
 
    public function edit($id)
    {
-       $categories = \App\Models\Category::all();
-       $product = Product::find($id);
-       if (!$product) {
-           return redirect()->route('produtos')->with('error', 'Produto não encontrado.');
-       }
-       return view('produtos.edit', ['categories' => $categories, 'produtos' => $product]);
+    $categories = \App\Models\Category::all();
+    $product = $this->objProduct->find($id);
+    return view('produtos.edit', ['categories' => $categories, 'product' => $product]);
    }
 
-   public function update(Request $request, $id)
-    {
-        $product = Product::find($id);
-        if (!$product) {
-            return redirect()->route('produtos')->with('error', 'Produto não encontrado.');
-        }
-
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'price' => 'required|numeric|min:0',
-            'category_id' => 'required|exists:categories,id',
-            'description' => 'nullable|string'
-        ]);
-
-        $product->update([
-            'name' => $request->name,
-            'price' => $request->price,
-            'category_id' => $request->category_id,
-            'description' => $request->description
-        ]);
-
-        return redirect()->route('produtos')->with('success', 'Produto atualizado com sucesso!');
-    }
+   public function update(ProductRequest $request, $id)
+   {
+    $this->objProduct->where(['id' => $id])->update([
+        'name'=>$request->name,
+        'slug'=> str_slug($request->name),
+        'price'=> $request->price,
+        'category_id'=> $request->category_id,
+        'description'=>$request->description
+    ]);
+    return redirect('produtos/listar');
+   }
 
    public function destroy($id)
    {

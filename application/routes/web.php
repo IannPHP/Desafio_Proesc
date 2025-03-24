@@ -22,8 +22,8 @@ Route::get('/produtos', [ProductController::class,'index'])->name('produtos');
 Route::get('/produtos/listar', [ProductController::class,'listar']);
 Route::get('/produtos/cadastrar', [ProductController::class,'create']);
 Route::post('/produtos/listar', [ProductController::class,'store']);
-Route::get('/produtos/{id}/edit', [ProductController::class,'produtos.edit']);
-Route::put('/produtos/{id}', [ProductController::class,'produtos.update']);
+Route::get('/produtos/{id}/edit', [ProductController::class,'edit']);
+Route::put('/produtos/{id}', [ProductController::class,'update']);
 Route::delete('/produtos/{id}/delete', [ProductController::class,'destroy']);
 
 //categorias
